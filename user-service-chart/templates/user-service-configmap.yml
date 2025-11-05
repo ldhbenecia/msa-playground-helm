@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.name }}
+data:
+  DB_URL: {{ .Values.configMap.data.DB_URL | quote }}
+  KAFKA_BROKERS: {{ .Values.configMap.data.KAFKA_BROKERS | quote }}

@@ -1,0 +1,15 @@
+*.log
+*.tmp
+
+.DS_Store
+
+*.tgz
+
+docker-images/
+
+.vscode/
+.idea/
+*.iml
+
+target/
+build/
