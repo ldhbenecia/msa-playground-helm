@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.service.name }}-monitor
+  labels:
+    app: {{ .Values.service.name }}
+    release: monitoring  # ✅ 중요: Prometheus가 찾을 수 있도록
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.service.name }}
+  endpoints:
+  - port: http  # Service의 port 이름과 일치해야 함
+    path: /actuator/prometheus
+    interval: 30s
