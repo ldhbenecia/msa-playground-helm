@@ -1,0 +1,30 @@
+# 1. ServiceAccount: Pod가 사용할 "신분증"
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: msa-service-account # (모든 서비스가 공용으로 사용할 신분증)
+
+---
+# 2. Role: "services"와 "endpoints"를 조회(get, list, watch)할 수 있는 "역할"
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: msa-service-reader
+rules:
+- apiGroups: [""] # ""는 코어 API 그룹을 의미
+  resources: ["services", "endpoints", "pods"]
+  verbs: ["get", "list", "watch"]
+
+---
+# 3. RoleBinding: "msa-service-account" 신분증에게 "msa-service-reader" 역할을 "부여"
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: msa-service-reader-binding
+subjects:
+- kind: ServiceAccount
+  name: msa-service-account # 1번에서 만든 신분증 이름
+roleRef:
+  kind: Role
+  name: msa-service-reader # 2번에서 만든 역할 이름
+  apiGroup: rbac.authorization.k8s.io
