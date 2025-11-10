@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka
+        image: confluentinc/cp-kafka:latest # docker-compose와 동일한 이미지
+        ports:
+        - containerPort: 9092 # ❗️ 클라이언트용 포트
+        - containerPort: 9093 # ❗️ 컨트롤러용 포트 (추가해주는 것이 좋음)
+        envFrom:
+        - configMapRef:
+            name: kafka-config # 1번에서 만든 ConfigMap의 설정을 환경변수로 주입

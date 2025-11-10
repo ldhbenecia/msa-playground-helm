@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service # ❗️ user-service가 찾으려던 바로 그 이름
+spec:
+  selector:
+    app: kafka # kafka-deployment의 Pod를 찾음
+  ports:
+    - protocol: TCP
+      port: 9092 # ❗️ 이 Service는 9092 포트로 요청을 받음
+      targetPort: 9092
