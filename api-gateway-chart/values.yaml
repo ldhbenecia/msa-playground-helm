@@ -1,16 +1,13 @@
 replicaCount: 1
-
 image:
   repository: ldhbenecia/msa-playground-api-gateway
-  tag: "1.0"
+  tag: "d2a7394"
   pullPolicy: IfNotPresent
-
 service:
   name: api-gateway-service
   port: 80
   targetPort: 8000
   type: LoadBalancer
-
 configMap:
   name: api-gateway-service
   data:
@@ -18,6 +15,5 @@ configMap:
     # K8s Service Discovery 활성화 (최신 키)
     GATEWAY_DISCOVERY_ENABLED: "true"
     GATEWAY_DISCOVERY_LOWERCASE: "true"
-
 rbac:
   serviceAccountName: msa-service-account
