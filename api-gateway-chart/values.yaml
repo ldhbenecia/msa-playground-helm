@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ldhbenecia/msa-playground-user-service
+  repository: ldhbenecia/msa-playground-api-gateway
   tag: "1.0"
   pullPolicy: IfNotPresent
 
