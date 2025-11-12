@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ldhbenecia/msa-playground-user-service
-  tag: "bb60575"
+  tag: "18513ca"
   pullPolicy: IfNotPresent
 service:
   name: order-service
