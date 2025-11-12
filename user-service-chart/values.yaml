@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ldhbenecia/msa-playground-user-service
-  tag: "1014988" # 이미지 버전
+  tag: "34782b7" # 이미지 버전
   pullPolicy: IfNotPresent # 이미지가 로컬에 존재하면 pull 안함
 service:
   name: user-service
