@@ -7,7 +7,7 @@ service:
   name: api-gateway-service
   port: 80
   targetPort: 8000
-  type: LoadBalancer
+  type: ClusterIP
 configMap:
   name: api-gateway-service
   data:
