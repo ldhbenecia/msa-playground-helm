@@ -1,26 +1,21 @@
 replicaCount: 1
-
 image:
   repository: msa/order-service
-  tag: "1.0"
+  tag: "bb60575"
   pullPolicy: IfNotPresent
-
 service:
   name: order-service
   port: 8082
   targetPort: 8082
-
 configMap:
   name: order-service-config
   data:
-      DB_URL: "jdbc:h2:mem:orderdb;DB_CLOSE_DELAY=-1"
-      KAFKA_BROKERS: "kafka-service:9092"
-
+    DB_URL: "jdbc:h2:mem:orderdb;DB_CLOSE_DELAY=-1"
+    KAFKA_BROKERS: "kafka-service:9092"
 secret:
   name: order-service-secret
   data:
     DB_USER: "sa"
     DB_PASSWORD: ""
-
 rbac:
   serviceAccountName: msa-service-account
