@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-ingress
+  annotations:
+    # 1. 이 Ingress가 "Nginx" 컨트롤러를 사용하도록 지정
+    kubernetes.io/ingress.class: "nginx" 
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          # 2. 'api-gateway-service' (ClusterIP)로 전달
+          service:
+            name: {{ .Values.service.name }} # (api-gateway-service)
+            port:
+              number: {{ .Values.service.port }} # (Service의 80 포트)
