@@ -1,0 +1,16 @@
+loki-stack:
+  loki:
+    enabled: true
+    isDefault: false # (Grafana에서 기본 datasource로 설정 안 함 - Prometheus가 있으므로)
+  
+  promtail:
+    enabled: true
+    config:
+      clients:
+        - url: http://loki-stack:3100/loki/api/v1/push # (내부 서비스 이름 참조)
+
+  grafana:
+    enabled: false
+    
+  prometheus:
+    enabled: false
